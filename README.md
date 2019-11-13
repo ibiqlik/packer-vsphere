@@ -1,2 +1,1 @@
-# packer-vsphere
-https://hub.docker.com/r/ilirbekteshi/packer-vsphere
+# hashicorp/packer:light with Jetbrains vsphere plugins

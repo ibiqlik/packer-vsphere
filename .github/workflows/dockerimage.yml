@@ -1,0 +1,15 @@
+name: Docker Image CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: |
+        DOCKER_IMAGE="ilirbekteshi/packer-vsphere"
+
+        docker login -u ${{ secrets.DOCKERHUB_USER }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+        docker build . --file Dockerfile -t $DOCKER_IMAGE:$GITHUB_SHA -t $DOCKER_IMAGE:latest
+        docker push $DOCKER_IMAGE:$GITHUB_SHA
+        docker push $DOCKER_IMAGE:latest
